@@ -27,7 +27,6 @@ public class CartProductsListPanel extends JPanel {
 	}
 
 	private JList<Product> createCartProductsList() {
-
 		JList<Product> cartProductsList = new JList<Product>(model);
 		cartProductsList.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(),
 				BorderFactory.createEmptyBorder(DefaultSpace, DefaultSpace, DefaultSpace, DefaultSpace)));

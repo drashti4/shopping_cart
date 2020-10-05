@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import com.isi.shopping.model.Product;
@@ -45,17 +46,15 @@ public class ProductSelectionPanel extends JPanel {
 	}
 
 	public Product getSelectedProduct() {
-		
-			System.out.println(productsListPanel.getSelectedProduct().getName() + " Existing quantity "
-					+ productsListPanel.getSelectedProduct().getBroughtQuantity());
-			
-			productsListPanel.getSelectedProduct()
-					.setBroughtQuantity(productControlButtons.getQuantityValue());
-			
-			System.out.println(productsListPanel.getSelectedProduct().getName() + " updated quantity "
-					+ productsListPanel.getSelectedProduct().getBroughtQuantity());
-			
-			return productsListPanel.getSelectedProduct();
+
+		if (productsListPanel.getSelectedProduct().getQuantity() < productControlButtons.getQuantityValue()) {
+			JOptionPane.showMessageDialog(null, "Quantity is not enough.");
+			return null;
+		} else {
+			productsListPanel.getSelectedProduct().setBroughtQuantity(productControlButtons.getQuantityValue());
+		}
+	
+		return productsListPanel.getSelectedProduct();
 	}
 
 }

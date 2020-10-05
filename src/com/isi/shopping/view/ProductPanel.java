@@ -55,8 +55,6 @@ public class ProductPanel extends JPanel implements IProductListener
 		this.add(createHorizontalLabelsPanel("Price", productPriceLabel));
 		this.add(createHalfSpaceRigidArea());
 		this.add(createHorizontalLabelsPanel("Discount", productDiscountLabel));
-		
-		
 	}
 	
 	private Component createHalfSpaceRigidArea()

@@ -23,8 +23,7 @@ public class ProductSelectionController
 	{
 		this.products =  products;
 		productsListPanel = productSelectionPanel.getProductsListPanel();
-		productPanel = productSelectionPanel.getProductPanel();
-		
+		productPanel = productSelectionPanel.getProductPanel();	
 		productsListPanel.addListSelectionListener(this::selectionChanged);
 	}
 	

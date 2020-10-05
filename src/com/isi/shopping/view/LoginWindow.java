@@ -1,6 +1,7 @@
 package com.isi.shopping.view;
 
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -11,13 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
-
-public class LoginWindow extends JFrame
+public class LoginWindow extends JFrame 
 {
 	private static final long serialVersionUID = 1L;
-
-	private JLabel welcomeTitleLabel;
+	
 	private JLabel userNameLabel;
 	private JLabel passwordLabel;
 	private JTextField userNameField;
@@ -47,25 +45,18 @@ public class LoginWindow extends JFrame
 	
 	private void createComponents()
 	{
-		welcomeTitleLabel = new JLabel("E-Shopping");
 		userNameLabel = new JLabel("UserName");
 		passwordLabel = new JLabel("Password");
 		userNameField = new JTextField(25);
 		userNameField.setMaximumSize(new Dimension(100, userNameField.getMaximumSize().height));
 		passwordField = new JTextField(25);
 		passwordField.setMaximumSize(new Dimension(100, passwordField.getMaximumSize().height));
-		loginButton = new JButton("Login");
+		loginButton = new JButton("Login Here");
 		cancelButton = new JButton("Cancel");
 		messageLabel = new JLabel("Message appears here");
 	}
 	private void addComponentsToContainers() {
-		// TODO Auto-generated method stub
-
 		Dimension rigidAreaWidth = new Dimension(25, 25);
-		
-		TitlePanel.add(welcomeTitleLabel);
-		TitlePanel.add(Box.createRigidArea(rigidAreaWidth));
-		TitlePanel.add(welcomeTitleLabel);
 		
 		loginPanel.add(userNameLabel);
 		loginPanel.add(Box.createRigidArea(rigidAreaWidth));
@@ -90,7 +81,11 @@ public class LoginWindow extends JFrame
 		contentPane.add(buttonsPanel);
 		contentPane.add(Box.createRigidArea(rigidAreaWidth));
 		contentPane.add(messagePanel);
+	}
 	
+	public void setErrorMessage() {
+		messageLabel.setText("Invalid Credential");
+		
 	}
 	private void initializeContainers() {
 		// TODO Auto-generated method stub
@@ -109,6 +104,23 @@ public class LoginWindow extends JFrame
 		contentPane = (JPanel)getContentPane();
 		contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.Y_AXIS));
 		contentPane.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+	}
 	
+	public String getUserName() {
+		return userNameField.getText();
+	}
+	
+	public String getPassword() {
+		return passwordField.getText();
+	}
+
+	public void addLoginListener(ActionListener listener)
+	{
+		loginButton.addActionListener(listener);
+	}
+	
+	public void removeLoginListener(ActionListener listener)
+	{
+		loginButton.removeActionListener(listener);
 	}
 }

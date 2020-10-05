@@ -13,11 +13,9 @@ public class ProductsListPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private static final int DefaultSpace = 10;
 
-	// private final ProductController controller;
 	private final JList<Product> productsList;
 
 	public ProductsListPanel(Product[] products) {
-		// this.controller = null;
 		productsList = createProductsList(products);
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

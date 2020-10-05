@@ -21,15 +21,7 @@ public class Product
 	
 	ArrayList<Product> productslist = new ArrayList<Product>();
 	private ArrayList<IProductListener> listeners;
-	
-	
-//	public void addProduct(String name, String category, String description, double price, int quantity, double discount)
-//	{
-//		//Product product = new Product(name, category);
-//		
-//		productslist.add(name);-
-//		
-//	}
+
 	public Product( String name, String category, String description, double price, int quantity, double discount)
 	{
 		productId = Product.nextProductId++;
@@ -45,7 +37,6 @@ public class Product
 		listeners = new ArrayList<IProductListener>();
 	}
 	
-	////getters
 	public int getProductId() { return productId; }
 	public String getName(){ return name; }
 	public String getCategory(){ return category; }
@@ -53,6 +44,10 @@ public class Product
 	public double getPrice(){ return price;	}
 	public int getQuantity() { return quantity; }
 	public double getDiscount(){ return discount; }
+	
+	public void setQuantity (int quantity) {
+		this.quantity = quantity;
+	}
 	public int getBroughtQuantity() {
 		return broughtQuantity;
 	}
@@ -64,10 +59,10 @@ public class Product
 		this.broughtQuantity=updateQuantity;
 	}
 	
-	////setters
-	//private void setName(){ }
+	public void decreaseQuantity(int quantity) {
+		this.quantity-=quantity;
+	}
 	
-	////otherMethods
 	public void addProductListener(IProductListener listener)
 	{
 		listeners.add(listener);
@@ -81,11 +76,6 @@ public class Product
 	@Override
 	public String toString() 
 	{
-		/*return "Product id: " + productId + ", Name: " + name +
-				", Category: " + category + ", Description: "
-				+ description + ", Price: " + price + 
-				", Quantity: " +quantity+ ", Discount: " + 
-				discount;*/
 		return "-> " + name;
 	}
 }

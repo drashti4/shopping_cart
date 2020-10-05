@@ -35,6 +35,7 @@ public class CartSelectionPanel extends JPanel {
 	public ListModel<Product> getAllCartItems() {
 		return cartProductsListPanel.getAllCartItem();
 	}
+	
 
 	public CartProductsListPanel getCartProductsListPanel() {
 		return cartProductsListPanel;

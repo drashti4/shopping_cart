@@ -2,6 +2,7 @@ package com.isi.shopping.view;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -11,7 +12,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
 
-import com.isi.shopping.interfaces.IProductListener;
 import com.isi.shopping.model.Product;
 
 public class TotalPanel extends JPanel {
@@ -27,6 +27,7 @@ public class TotalPanel extends JPanel {
 	private final JLabel totalAmountLabel;
 	private final JLabel discountAmountLabel;
 	private final JButton checkoutButton;
+	private final JButton logoutButton;
 	private final CartSelectionPanel cartSelectionPanel;
 
 	public TotalPanel(CartSelectionPanel cartSelectionPanel) {
@@ -37,6 +38,7 @@ public class TotalPanel extends JPanel {
 		totalAmountLabel = new JLabel("$0.0");
 		discountAmountLabel = new JLabel("$0.0");
 		checkoutButton = new JButton("Checkout");
+		logoutButton = new JButton("Logout");
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEtchedBorder(),
@@ -52,7 +54,8 @@ public class TotalPanel extends JPanel {
 		this.add(createHorizontalLabelsPanel("FinalTotal", totalAmountLabel));
 		this.add(createHalfSpaceRigidArea());
 		this.add(checkoutButton);
-
+		this.add(createHalfSpaceRigidArea());
+		this.add(logoutButton);
 	}
 
 	public void calculateTotal() {
@@ -60,9 +63,10 @@ public class TotalPanel extends JPanel {
 		double total = 0;
 		if (items != null) {
 			for (int i = 0; i < items.getSize(); i++) {
-				System.out.println(items.getElementAt(i).getName() +" : "+ items.getElementAt(i).getBroughtQuantity() + " : "+items.getElementAt(i).getPrice());
-				total+=items.getElementAt(i).getBroughtQuantity() * items.getElementAt(i).getPrice();
-				System.out.println("Total is "+total);
+				System.out.println(items.getElementAt(i).getName() + " : " + items.getElementAt(i).getBroughtQuantity()
+						+ " : " + items.getElementAt(i).getPrice());
+				total += items.getElementAt(i).getBroughtQuantity() * items.getElementAt(i).getPrice();
+				System.out.println("Total is " + total);
 			}
 			setSubTotalLabel(total);
 		}
@@ -71,6 +75,7 @@ public class TotalPanel extends JPanel {
 	private void setSubTotalLabel(double amount) {
 		subTotalAmountLabel.setText(String.valueOf(amount));
 	}
+
 	private Component createHalfSpaceRigidArea() {
 		return Box.createRigidArea(HalfSpaceDimension);
 	}
@@ -98,55 +103,11 @@ public class TotalPanel extends JPanel {
 		component.setMaximumSize(new Dimension(width, component.getMaximumSize().height));
 	}
 
-//	public void updateProductId(Integer productId) {
-//		if (productId != null)
-//			productIdLabel.setText(Integer.toString(productId));
-//		else
-//			productIdLabel.setText(" ");
-//	}
-//
-//	public void updateProductName(String productName) {
-//		if (productName != null)
-//			productNameLabel.setText(productName);
-//		else
-//			productIdLabel.setText(" ");
-//	}
-//
-//	public void updateProductCategory(String category) {
-//		if (category != null)
-//			productCategoryLabel.setText(category);
-//		else
-//			productCategoryLabel.setText(" ");
-//	}
-//
-//	public void updateProductDescription(String description) {
-//		if (description != null)
-//			productDescriptionLabel.setText(description);
-//		else
-//			productDescriptionLabel.setText(" ");
-//	}
-//
-//	@Override
-//	public void updateProductQuantity(Integer quantity) {
-//		if (quantity != null)
-//			productQuantityLabel.setText(Integer.toString(quantity));
-//		else
-//			productQuantityLabel.setText(" ");
-//	}
-//
-//	public void updateProductPrice(Double price) {
-//		if (price != null)
-//			productPriceLabel.setText(Double.toString(price));
-//		else
-//			productPriceLabel.setText(" ");
-//	}
-//
-//	@Override
-//	public void updateProductDiscount(Double discount) {
-//		if (discount != null)
-//			productDiscountLabel.setText(Double.toString(discount));
-//		else
-//			productDiscountLabel.setText(" ");
-//	}
+	public void addCheckoutButtonListener(ActionListener listner) {
+		checkoutButton.addActionListener(listner);
+	}
 
+	public void addLogoutListener(ActionListener listener) {
+		logoutButton.addActionListener(listener);
+	}
 }
